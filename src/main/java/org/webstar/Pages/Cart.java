@@ -9,24 +9,44 @@ import org.webstar.Factory.Interactions.CommonFunctions;
 import java.util.List;
 
 public class Cart extends CommonFunctions {
+
     WebDriver driver;
     public Cart(WebDriver driver) {
         super(driver);
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(driver,this);
+
     }
 
-    @FindBy(xpath = "//h1[text()=\"Shopping Cart\"]")
+    //======>Locators
+    @FindBy(xpath = "//h1[.='My Cart']")
     private WebElement cartHeader;
 
-    @FindBy(tagName = "article")
+    @FindBy(xpath = "//button[.='Checkout']")
+    private WebElement checkoutBtn;
+
+    @FindBy(css = ".cartSection > h3")
     private List<WebElement> cartItems;
 
+
+    //=======>interactions
     public Boolean verifyCart(){
         return waitForElement(cartHeader);
     }
 
-    public int getCartLength(){
-        return cartItems.size();
+    public Checkout clickCheckout(){
+        click(checkoutBtn,"Checkout");
+        return new Checkout(driver);
+
     }
+
+    public Boolean verifyCartItems(String productName){
+        Boolean cartItemPresent = false;
+        if(waitForElements(cartItems)) {
+            cartItemPresent = cartItems.stream().anyMatch(product -> product.getText().equalsIgnoreCase(productName));
+        }
+        return  cartItemPresent;
+
+    }
+
 }

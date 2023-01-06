@@ -7,7 +7,9 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.webstar.Factory.BrowserConfig.BrowserSetup;
 import org.webstar.Pages.Cart;
-import org.webstar.Pages.LandingPage;
+import org.webstar.Pages.Checkout;
+import org.webstar.Pages.Dashboard;
+import org.webstar.Pages.Login;
 import org.webstar.Utilities.ReadProperties;
 
 import java.util.Properties;
@@ -16,9 +18,14 @@ public class BaseTest {
 
     BrowserSetup setup;
     protected WebDriver driver;
-    protected LandingPage landingPage;
+    protected Login login;
+    protected Dashboard dashboard;
     protected Cart cart;
+    protected Checkout checkout;
+
     protected Properties prop;
+
+    protected String productName;
 
     @Parameters({"url","browser"})
     @BeforeTest
@@ -32,17 +39,26 @@ public class BaseTest {
             setup = new BrowserSetup();
             setup.setupBrowser(prop.getProperty("browser"));
             driver = setup.getDriver();
-            driver.get("https://www.takealot.com/");
+            driver.get("https://rahulshettyacademy.com/client");
             driver.manage().window().maximize();
 
+            productName =prop.getProperty("product");
+
             //Page objects
-            landingPage = new LandingPage(driver);
+            login = new Login(driver);
+
+            //Login
+
+            //
+
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
     }
+
+
 
     @AfterTest
     protected void tearDown() {
