@@ -51,7 +51,7 @@ public class ExtentListener extends BaseTest implements ITestListener {
     public void onTestFailure(ITestResult iTestResult) {
         Log.info(getTestMethodName(iTestResult) + " test is failed.");
 
-        //Get driver from BaseTest and assign to local webdriver variable.
+        //Get driver from BaseTest and assign to local webDriver variable.
         Object testClass = iTestResult.getInstance();
         WebDriver driver = ((BaseTest)testClass).getDriver();
 

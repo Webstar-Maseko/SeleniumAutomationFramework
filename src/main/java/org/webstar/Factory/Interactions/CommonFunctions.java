@@ -24,7 +24,7 @@ public class CommonFunctions {
         js = (JavascriptExecutor) driver;
     }
 
-    public void click(WebElement element, String name) {
+    protected void click(WebElement element, String name) {
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
             wait.until(ExpectedConditions.elementToBeClickable(element));
@@ -39,7 +39,7 @@ public class CommonFunctions {
         }
     }
 
-    public void fill(WebElement element, String name, String text) {
+    protected void fill(WebElement element, String name, String text) {
         if (waitForElement(element)) {
             element.clear();
             element.sendKeys(text);
@@ -51,7 +51,7 @@ public class CommonFunctions {
         }
     }
 
-    public Boolean waitForElement(WebElement element) {
+    protected Boolean waitForElement(WebElement element) {
         try {
             wait.until(ExpectedConditions.visibilityOf(element));
             return true;
@@ -63,7 +63,7 @@ public class CommonFunctions {
         }
     }
 
-    public Boolean waitForInvisibilityOfElement(WebElement element){
+    protected Boolean waitForInvisibilityOfElement(WebElement element) {
         try {
             wait.until(ExpectedConditions.invisibilityOf(element));
             return true;
@@ -75,7 +75,7 @@ public class CommonFunctions {
         }
     }
 
-    public Boolean waitForElements(List<WebElement> elements) {
+    protected Boolean waitForElements(List<WebElement> elements) {
         try {
             wait.until(ExpectedConditions.visibilityOfAllElements(elements));
             return true;
@@ -87,7 +87,7 @@ public class CommonFunctions {
         }
     }
 
-    public void goToElement(WebElement element) {
+    protected void goToElement(WebElement element) {
         try {
 
             js.executeScript("arguments[0].scrollIntoView(true)", element);
