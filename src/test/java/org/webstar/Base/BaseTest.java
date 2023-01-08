@@ -6,9 +6,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.webstar.Factory.BrowserConfig.BrowserSetup;
-import org.webstar.Pages.Cart;
-import org.webstar.Pages.Checkout;
-import org.webstar.Pages.Dashboard;
+import org.webstar.Pages.AdminPages.AdminLogin;
+import org.webstar.Pages.AdminPages.Dashboard;
 import org.webstar.Pages.Login;
 import org.webstar.Utilities.ReadProperties;
 
@@ -18,20 +17,19 @@ public class BaseTest {
 
     BrowserSetup setup;
     protected WebDriver driver;
-    protected Login login;
-    protected Dashboard dashboard;
-    protected Cart cart;
-    protected Checkout checkout;
+    protected String url;
 
     protected Properties prop;
+    protected AdminLogin adminLogin;
+    protected Dashboard dashboard;
 
-    protected String productName;
 
     @Parameters({"url","browser"})
     @BeforeTest
     protected void setupTest(String url,@Optional String browser) {
         try {
             prop = new ReadProperties().init_Prop();
+            this.url = url;
 
             if(browser !=null)
                 prop.setProperty("browser",browser);
@@ -39,15 +37,13 @@ public class BaseTest {
             setup = new BrowserSetup();
             setup.setupBrowser(prop.getProperty("browser"));
             driver = setup.getDriver();
-            driver.get("https://rahulshettyacademy.com/client");
+            driver.get(url);
             driver.manage().window().maximize();
 
-            productName =prop.getProperty("product");
 
             //Page objects
-            login = new Login(driver);
+            adminLogin  = new AdminLogin(driver);
 
-            //Login
 
             //
 
