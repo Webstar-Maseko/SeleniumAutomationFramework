@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.webstar.Factory.Interactions.CommonFunctions;
-import org.webstar.Pages.AdminPages.Dashboard;
 
 public class Login extends CommonFunctions {
     WebDriver driver;

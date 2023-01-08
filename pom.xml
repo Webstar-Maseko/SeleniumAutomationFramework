@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.webstar</groupId>
-  <artifactId>a-storeAutomation</artifactId>
+  <artifactId>SeleniumAutomationFramework</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>a-storeAutomation</name>
+  <name>SeleniumAutomationFramework</name>
   <url>http://maven.apache.org</url>
 
   <properties>
